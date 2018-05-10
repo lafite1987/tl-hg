@@ -17,7 +17,7 @@ import com.hg.tl_hg.entity.MovieEntity;
 import com.hg.tl_hg.service.MovieService;
 
 import cn.lfy.common.PageWrapper;
-import cn.lfy.common.Query;
+import cn.lfy.common.RestRequest;
 import cn.lfy.common.Result;
 import io.swagger.annotations.ApiOperation;
 
@@ -30,12 +30,11 @@ public class MovieCtrl {
 	
 	@RequestMapping(value = "/list.json")
 	@ApiOperation(value = "列表", httpMethod = "GET", notes = "列表接口")
-	public @ResponseBody Result<PageWrapper<MovieEntity>> list(@RequestBody Query<MovieEntity> query) {
+	public @ResponseBody Result<PageWrapper<MovieEntity>> list(@RequestBody RestRequest<MovieEntity> restRequest) {
 		Result<PageWrapper<MovieEntity>> result = Result.success();
-		EntityWrapper<MovieEntity> wrapper = new EntityWrapper<MovieEntity>(query.getQuery());
-		Page<MovieEntity> page = movieService.selectPage(query.toPage(), wrapper);
-		PageWrapper<MovieEntity> pageWrapper = PageWrapper.buildPageWrapper(page.getCurrent(), page.getSize(), page.getTotal());
-		pageWrapper.setList(page.getRecords());
+		EntityWrapper<MovieEntity> wrapper = new EntityWrapper<MovieEntity>(restRequest.getQuery());
+		Page<MovieEntity> page = movieService.selectPage(restRequest.toPage(), wrapper);
+		PageWrapper<MovieEntity> pageWrapper = PageWrapper.buildPageWrapper(page);
 		result.setData(pageWrapper);
 		return result;
 	}

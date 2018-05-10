@@ -34,7 +34,7 @@ import cn.lfy.base.service.RoleService;
 import cn.lfy.base.service.UserRoleService;
 import cn.lfy.base.service.UserService;
 import cn.lfy.common.PageWrapper;
-import cn.lfy.common.Query;
+import cn.lfy.common.RestRequest;
 import cn.lfy.common.Result;
 import cn.lfy.common.exception.ErrorCode;
 import cn.lfy.common.exception.GlobalException;
@@ -57,11 +57,10 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/list.json")
 	@ApiOperation(value = "用户列表", httpMethod = "GET", notes = "用户列表接口")
-	public @ResponseBody Result<PageWrapper<User>> list(@RequestBody Query<User> query) {
+	public @ResponseBody Result<PageWrapper<User>> list(@RequestBody RestRequest<User> restRequest) {
 		Result<PageWrapper<User>> result = Result.success();
-		Page<User> page = userService.selectPage(query.toPage());
-		PageWrapper<User> pageWrapper = PageWrapper.buildPageWrapper(page.getCurrent(), page.getSize(), page.getTotal());
-		pageWrapper.setList(page.getRecords());
+		Page<User> page = userService.selectPage(restRequest.toPage());
+		PageWrapper<User> pageWrapper = PageWrapper.buildPageWrapper(page);
 		result.setData(pageWrapper);
 		return result;
 	}

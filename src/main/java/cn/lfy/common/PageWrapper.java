@@ -3,6 +3,8 @@ package cn.lfy.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baomidou.mybatisplus.plugins.Page;
+
 import lombok.Data;
 
 @Data
@@ -16,6 +18,14 @@ public class PageWrapper<T> {
 		PageInfo page = new PageInfo(currentPage, pageSize, totalNum);
 		PageWrapper<T> pageWrapper = new PageWrapper<>();
 		pageWrapper.page = page;
+		return pageWrapper;
+	}
+	
+	public static <T> PageWrapper<T> buildPageWrapper(Page<T> page) {
+		PageInfo pageInfo = new PageInfo(page.getCurrent(), page.getSize(), page.getTotal());
+		PageWrapper<T> pageWrapper = new PageWrapper<>();
+		pageWrapper.page = pageInfo;
+		pageWrapper.list = page.getRecords();
 		return pageWrapper;
 	}
 }

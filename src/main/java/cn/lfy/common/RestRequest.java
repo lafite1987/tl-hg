@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import lombok.Data;
 
 @Data
-public class Query<T> {
+public class RestRequest<T> {
 
 	private PageInfo page = new PageInfo();
 	private T query;
