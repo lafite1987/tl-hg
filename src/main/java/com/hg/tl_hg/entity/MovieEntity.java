@@ -25,7 +25,9 @@ public class MovieEntity {
 	private String videoUrl;
 	
 	private Integer praises;
-	
+	/**
+	 * 0-初始；1-待审核；2-审核中；3-审核通过
+	 */
 	private Integer state;
 	
 	@TableField(fill = FieldFill.INSERT, value="createTime")

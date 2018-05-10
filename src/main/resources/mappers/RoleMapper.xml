@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lfy.base.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.lfy.base.model.Role" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <id column="parentId" property="parentId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="createTime" property="createTime" jdbcType="BIGINT" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="parentIdPath" property="parentIdPath" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, parentId, name, `desc`, state, createTime, `level`, parentIdPath
+  </sql>
+  
+  <select id="getRoles" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from role
+    <if test="list != null and list.size() > 0">
+    	where id in
+    	<foreach collection="list" open="(" item="roleId" separator="," close=")">
+    		#{roleId}
+    	</foreach>
+    </if>
+  </select>
+</mapper>

@@ -28,9 +28,21 @@ public class AdvertisementEntity {
 	 * 链接
 	 */
 	private String link;
-	
-	private String imageUrl;
-	
+	/**
+	 * 图片相对路径
+	 */
+	private String imagePath;
+	/**
+	 * 广告类型：1-开机广告；2-首页广告；3-详情页普通广告；4-详情页大广告
+	 */
+	private Integer type;
+	/**
+	 * 审核状态：1-创建；2-待审核；3-审核通过
+	 */
+	private Integer auditStatus;
+	/**
+	 * 1-正在投放；2-暂停投放；3-停止；
+	 */
 	private Integer state;
 	
 	@TableField(fill = FieldFill.INSERT, value="createTime")

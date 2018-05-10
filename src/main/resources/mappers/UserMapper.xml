@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lfy.base.mapper.UserMapper" >
+
+  <cache flushInterval="1800000" size="1024" readOnly="true" eviction="LRU"></cache>
+  
+  <sql id="Base_Column_List" >
+    id, username, password, salt, nickname, email, phone, state, createTime
+  </sql>
+  
+  <select id="selectByUsername" resultType="cn.lfy.base.model.User" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from user where username = #{username} limit 1
+  </select>
+  
+</mapper>
