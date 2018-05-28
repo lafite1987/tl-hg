@@ -7,38 +7,44 @@ import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.enums.IdType;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * 注册码
- * @author honeyleo
- *
- */
-@TableName("t_registration_code")
 @Data
-public class RegistrationCodeEntity {
+@TableName("t_version")
+public class VersionEntity {
 
 	@TableId(value="id",type=IdType.AUTO)
     private Long id;
-	/**
-	 * 注册码有效天数
-	 */
-	private Integer days;
 	
-	private String code;
+	private String name;
 	/**
-	 * 注册码激活时间
+	 * 根据该值比较获取最新版本
 	 */
-	private Long activateTime;
+	private Integer VersionCode;
 	/**
-	 * 注册码到期时间，从注册码激活时间加上有效天数为到期时间
+	 * 1.0.1
 	 */
-	private Long expireTime;
+	private String versionName;
 	/**
-	 * 1-封停；2-可用；
+	 * 更新内容
 	 */
-	private Integer state;
-	private transient String token;
+	private Integer content;
+	/**
+	 * 1-IOS；2-Android；
+	 */
+	@ApiModelProperty(notes = "1-IOS；2-Android")
+	private Integer type;
+	/**
+	 * 封面地址
+	 */
+	private transient String imageUrl;
+	private String imagePath;
+	/**
+	 * 下载地址
+	 */
+	private transient String downloadUrl;
+	private String downloadPath;
 	
 	@TableField(fill = FieldFill.INSERT, value="createTime")
 	private Long createTime;

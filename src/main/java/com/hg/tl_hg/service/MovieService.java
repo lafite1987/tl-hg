@@ -5,4 +5,5 @@ import com.hg.tl_hg.entity.MovieEntity;
 
 public interface MovieService extends IService<MovieEntity> {
 
+	
 }

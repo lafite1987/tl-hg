@@ -9,36 +9,16 @@ import com.baomidou.mybatisplus.enums.IdType;
 
 import lombok.Data;
 
-/**
- * 注册码
- * @author honeyleo
- *
- */
-@TableName("t_registration_code")
+@TableName("t_movie_classify")
 @Data
-public class RegistrationCodeEntity {
+public class MovieClassifyEntity {
 
 	@TableId(value="id",type=IdType.AUTO)
     private Long id;
-	/**
-	 * 注册码有效天数
-	 */
-	private Integer days;
 	
-	private String code;
-	/**
-	 * 注册码激活时间
-	 */
-	private Long activateTime;
-	/**
-	 * 注册码到期时间，从注册码激活时间加上有效天数为到期时间
-	 */
-	private Long expireTime;
-	/**
-	 * 1-封停；2-可用；
-	 */
-	private Integer state;
-	private transient String token;
+	private Long movieId;
+	
+	private Long classifyId;
 	
 	@TableField(fill = FieldFill.INSERT, value="createTime")
 	private Long createTime;

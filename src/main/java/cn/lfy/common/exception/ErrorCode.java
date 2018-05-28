@@ -8,8 +8,11 @@ public enum ErrorCode {
 	
 	SERVER_ERROR(500, "服务器异常，请稍后再试"),
 	TOKEN_INVALID(501, "访问令牌无效"),
+	REGISTER_CODE_ERROR(502, "您输入的激活码错误，请重新输入"),
 	NO_LOGIN(401, "未登录，请先登录"),
 	UNAUTHORIZED(403, "未授权"),
+	UPLOAD_FILE_EMPTY(420, "上传文件为空"),
+	UPLOAD_FILE_FAILED(421, "上传文件失败"),
 	
 	USERNAME_PASSWORD_ERROR(600, "用户名或密码错误"),
 	EXISTED(601, "{0}已存在"),

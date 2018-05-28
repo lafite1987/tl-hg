@@ -32,16 +32,17 @@ public class AdvertisementEntity {
 	 * 图片相对路径
 	 */
 	private String imagePath;
+	private transient String imageUrl;
 	/**
-	 * 广告类型：1-开机广告；2-首页广告；3-详情页普通广告；4-详情页大广告
+	 * 广告类型：1-开机广告；2-首页广告；3-详情页普通广告；4-详情页大广告；5-首页轮播广告
 	 */
 	private Integer type;
 	/**
-	 * 审核状态：1-创建；2-待审核；3-审核通过
+	 * 审核状态：1-创建；2-待审核；3-审核通过；4-审核失败
 	 */
 	private Integer auditStatus;
 	/**
-	 * 1-正在投放；2-暂停投放；3-停止；
+	 * 1-未开始投放；2-正在投放；3-暂停投放；4-停止；
 	 */
 	private Integer state;
 	

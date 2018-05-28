@@ -2,7 +2,7 @@
 <configuration>
 
 	<!-- 日志存放的路径 ,默认为tomcat下面的logs -->
-	<property name="LOGBACK_DIR" value="/data/logs/xyct" />
+	<property name="LOGBACK_DIR" value="/data/log/tl-hg" />
 	<property name="LOGBACK_LEVEL" value="INFO" />
 	<!-- 输出到窗口 -->
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
