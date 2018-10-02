@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import cn.lfy.base.interceptor.ApiInterceptor;
 import cn.lfy.base.interceptor.SessionInterceptor;
 
 @Configuration  
@@ -34,15 +35,23 @@ public class MvcConfigurer extends WebMvcConfigurerAdapter {
                 .addResourceLocations("classpath:/META-INF/resources/");
           registry.addResourceHandler("/webjars/**")
                  .addResourceLocations("classpath:/META-INF/resources/webjars/");
+          registry.addResourceHandler("index.html")
+          .addResourceLocations("classpath:/static/");
+          registry.addResourceHandler("/static/**")
+          .addResourceLocations("classpath:/static/static/");
 
     }
   
     @Autowired
 	private SessionInterceptor sessionInterceptor;
+    
+    @Autowired
+    private ApiInterceptor apiInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(sessionInterceptor).addPathPatterns("/sys/**");
+		registry.addInterceptor(sessionInterceptor).addPathPatterns("/manager/**");
+		registry.addInterceptor(apiInterceptor).addPathPatterns("/api/**");
 	}
 	
 	public ResourceBundleMessageSource getMessageSource() throws Exception {  

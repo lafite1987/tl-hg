@@ -8,4 +8,10 @@ import com.hg.tl_hg.entity.MovieEntity;
 @Repository
 public interface MovieMapper extends BaseMapper<MovieEntity> {
 
+	/**
+	 * 添加PV
+	 * @param id
+	 * @return
+	 */
+	int addPv(Long id);
 }

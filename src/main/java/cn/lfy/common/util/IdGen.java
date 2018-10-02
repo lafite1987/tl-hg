@@ -98,9 +98,4 @@ public class IdGen {
         return System.currentTimeMillis();
     }
     
-    public static void main(String[] args) {
-    	long nextId = IdGen.get().nextId();
-    	long uid = nextId & 0xffffffffL;
-    	System.out.println(uid);
-	}
 }

@@ -34,7 +34,7 @@ public class AdvertisementEntity {
 	private String imagePath;
 	private transient String imageUrl;
 	/**
-	 * 广告类型：1-开机广告；2-首页广告；3-详情页普通广告；4-详情页大广告；5-首页轮播广告
+	 * 广告类型：1-开机广告；2-首页广告；3-详情页上方广告；4-详情页大广告；5-首页轮播广告；6-详情页下方广告
 	 */
 	private Integer type;
 	/**

@@ -20,6 +20,7 @@ public class RegistrationCodeEntity {
 
 	@TableId(value="id",type=IdType.AUTO)
     private Long id;
+	private transient Integer total;
 	/**
 	 * 注册码有效天数
 	 */

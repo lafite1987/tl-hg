@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -127,13 +128,16 @@ public class LoginController extends BaseController {
         return account;
     }
 
-    @RequestMapping(value = "/getUserInfo.json")
+    @RequestMapping(value = "/manager/getUserInfo.json")
 	@ResponseBody
-	public Result<Map<String, Object>> getUserInfo() {
+	public Result<Map<String, Object>> getUserInfo(@RequestHeader("Authorization") String authorization) {
+    	String token = authorization.substring(6);
+    	Long userId = JwtToken.verify(token);
+    	User user = userService.selectById(userId);
     	Result<Map<String, Object>> result = Result.success();
 		Map<String, Object> userInfo = Maps.newHashMap();
-		userInfo.put("id", 24);
-		userInfo.put("name", "超级管理员");
+		userInfo.put("id", userId);
+		userInfo.put("name", user.getNickname());
 		result.setData(userInfo);
 		return result;
 	}

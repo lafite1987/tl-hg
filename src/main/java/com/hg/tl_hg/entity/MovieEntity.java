@@ -27,7 +27,10 @@ public class MovieEntity {
 	
 	private String videoPath;
 	private transient String videoUrl;
-	
+	/**
+	 * 浏览量
+	 */
+	private Integer pv;
 	private Integer praises;
 	/**
 	 * 0-初始；1-待审核；2-审核中；3-审核通过；4-审核不通过

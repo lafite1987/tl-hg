@@ -5,5 +5,10 @@ import com.hg.tl_hg.entity.MovieEntity;
 
 public interface MovieService extends IService<MovieEntity> {
 
-	
+	/**
+	 * 添加PV
+	 * @param id
+	 * @return
+	 */
+	int addPv(Long id);
 }

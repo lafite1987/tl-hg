@@ -33,6 +33,7 @@ public class ClassifyCtrl {
 	public @ResponseBody Result<PageWrapper<ClassifyEntity>> list(@RequestBody RestRequest<ClassifyEntity> restRequest) {
 		Result<PageWrapper<ClassifyEntity>> result = Result.success();
 		EntityWrapper<ClassifyEntity> wrapper = new EntityWrapper<ClassifyEntity>(restRequest.getQuery());
+		wrapper.orderBy("sequence", true);
 		Page<ClassifyEntity> page = classifyService.selectPage(restRequest.toPage(), wrapper);
 		PageWrapper<ClassifyEntity> pageWrapper = PageWrapper.buildPageWrapper(page);
 		result.setData(pageWrapper);

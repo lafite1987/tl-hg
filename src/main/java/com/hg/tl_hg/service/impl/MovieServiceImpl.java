@@ -10,4 +10,9 @@ import com.hg.tl_hg.service.MovieService;
 @Service
 public class MovieServiceImpl extends ServiceImpl<MovieMapper,MovieEntity> implements MovieService {
 
+	@Override
+	public int addPv(Long id) {
+		return this.baseMapper.addPv(id);
+	}
+
 }

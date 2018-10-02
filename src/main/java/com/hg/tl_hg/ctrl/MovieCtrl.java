@@ -46,6 +46,7 @@ public class MovieCtrl {
 	public @ResponseBody Result<PageWrapper<MovieEntity>> list(@RequestBody RestRequest<MovieEntity> restRequest) {
 		Result<PageWrapper<MovieEntity>> result = Result.success();
 		EntityWrapper<MovieEntity> wrapper = new EntityWrapper<MovieEntity>(restRequest.getQuery());
+		wrapper.orderBy("createTime", false);
 		Page<MovieEntity> page = movieService.selectPage(restRequest.toPage(), wrapper);
 		for(MovieEntity entity : page.getRecords()) {
 			handleDomain(entity);
@@ -77,6 +78,9 @@ public class MovieCtrl {
 	}
 
 	private MovieEntity handleDomain(MovieEntity entity) {
+		if(entity == null) {
+			return null;
+		}
 		if(StringUtils.isNotBlank(entity.getCoverPath())) {
 			entity.setCoverUrl(fileServerConfig.getDomain() + entity.getCoverPath());
 		}
