@@ -38,6 +38,7 @@ public class Test {
         cache2.put(33, 'x');
     }
     public String parse(String a1, String a2) {
+        
         char[] a1Arr = a1.toCharArray();
         char[] a2Arr = a2.toCharArray();
         int dist = 0;
